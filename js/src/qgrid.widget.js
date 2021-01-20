@@ -8,12 +8,6 @@ var text_filter = require('./qgrid.textfilter.js');
 var boolean_filter = require('./qgrid.booleanfilter.js');
 var editors = require('./qgrid.editors.js');
 var dialog = null;
-try {
-  dialog = require('base/js/dialog');
-} catch (e) {
-  console.warn("Qgrid was unable to load base/js/dialog. " +
-               "Full screen button won't be available");
-}
 var jquery_ui = require('jquery-ui-dist/jquery-ui.min.js');
 
 require('slickgrid-qgrid/slick.core.js');
@@ -360,7 +354,7 @@ class QgridView extends widgets.DOMWidgetView {
       // don't allow editing index columns
       if (cur_column.is_index) {
         slick_column.editor = editors.IndexEditor;
-        
+
         if (cur_column.first_index){
           slick_column.cssClass += ' first-idx-col';
         }
@@ -423,7 +417,7 @@ class QgridView extends widgets.DOMWidgetView {
     this.slick_grid.setSelectionModel(new Slick.RowSelectionModel());
     this.slick_grid.setCellCssStyles("grouping", this.row_styles);
     this.slick_grid.render();
-    
+
     this.update_size();
 
     var render_header_cell = (e, args) => {
